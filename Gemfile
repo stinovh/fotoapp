@@ -50,3 +50,8 @@ group :development do
   gem 'spring'
 end
 
+# front-end
+gem 'bootstrap-sass'
+gem 'font-awesome-sass'
+gem 'simple_form'
+
