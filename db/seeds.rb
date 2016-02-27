@@ -9,6 +9,8 @@ require 'faker'
 10.times do |i|
   Package.create!(
     name: Faker::Commerce.product_name,
-    start_time: Time.now-i,
-    end_time: Time.now+i)
+    start_price_cents: 1000,
+    minimum_price_cents: 9000,
+    start_time: Time.now,
+    end_time: i.days.from_now)
 end
