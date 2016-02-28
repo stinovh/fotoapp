@@ -9,6 +9,7 @@ require 'faker'
 10.times do |i|
   Package.create!(
     name: Faker::Commerce.product_name,
+    description: Faker::Lorem.paragraph,
     start_price_cents: 20000,
     minimum_price_cents: 9000,
     start_time: Time.now,
