@@ -1,0 +1,6 @@
+<%= simple_form_for @order do |f| %>
+  <%= f.hidden_field :package_id, value: @package.id %>
+  <%= f.input :full_name %>
+  <%= f.input :email %>
+  <%= f.submit %>
+<% end %>

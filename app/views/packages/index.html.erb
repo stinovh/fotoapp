@@ -2,3 +2,4 @@
 <%= @package.name %>
 <%= @package.description %>
 Until <%= @package.end_time %>
+<%= link_to "Koop", new_order_path(package_id: @package.id) %>
