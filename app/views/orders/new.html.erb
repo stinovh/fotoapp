@@ -6,7 +6,7 @@
         <%= f.input :full_name %>
         <%= f.input :email %>
         <%= f.input :payment_method, collection: ['PayPal', 'Bitcoin'], prompt: 'Pick your payment method' %>
-        <%= f.submit %>
+        <%= f.submit "Continue to payment method", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>
