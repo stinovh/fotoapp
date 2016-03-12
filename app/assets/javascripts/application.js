@@ -22,10 +22,11 @@ function executeQuery() {
       $('#current-price').load('/packages #current-price')
     }
   });
+  setTimeout(executeQuery, 5000);
 }
 
 $(document).ready(function() {
-  setTimeout(executeQuery, 30000);
+  setTimeout(executeQuery, 5000);
 });
 
 
