@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
     if @order.save && params[:order][:payment_method] == "PayPal"
       redirect_to @order.paypal_url(packages_path)
     elsif @order.save && params[:order][:payment_method] == "Bitcoin"
-      redirect_to bitcoin_payments_path
+      redirect_to order_bitcoin_payments_path(@order)
     else
       render :new
     end
