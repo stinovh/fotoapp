@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   belongs_to :package
 
-  validates :full_name, :email, presence: true
+  validates :full_name, :email, :payment_method, presence: true
 
   serialize :notification_params, Hash
   def paypal_url(return_path)
