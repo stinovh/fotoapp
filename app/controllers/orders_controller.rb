@@ -14,8 +14,10 @@ class OrdersController < ApplicationController
   # POST /orders
   def create
     @order = Order.new(order_params)
-    if @order.save
+    if @order.save && params[:order][:payment_method] == "PayPal"
       redirect_to @order.paypal_url(packages_path)
+    elsif @order.save && params[:order][:payment_method] == "Bitcoin"
+      redirect_to bitcoin_payments_path
     else
       render :new
     end
@@ -40,6 +42,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:package_id, :full_name, :email)
+      params.require(:order).permit(:package_id, :full_name, :email, :payment_method)
     end
 end

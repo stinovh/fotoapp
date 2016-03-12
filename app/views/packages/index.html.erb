@@ -1,56 +1,11 @@
-<div id="current-price"><%= @package.current_price.round(2) %></div>
-<%= @package.name %>
-<%= @package.description %>
-Until <%= @package.end_time %>
-<%= link_to "Koop", new_order_path(package_id: @package.id) %>
-
-<div id="bitcoin-address-template" class="bitcoin-address-container" style="display: none">
-
-    <div>
-        <span class="bitcoin-address"></span>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-4 col-md-offset-4">
+      <h1 id="current-price"><%= @package.current_price.round(2) %></h1>
+      <h1><%= @package.name %></h1>
+      <p><%= @package.description %></p>
+      <h4>Until <%= @package.end_time %></h4>
+      <p><%= link_to "Koop", new_order_path(package_id: @package.id), class: "btn btn-primary" %></p>
     </div>
-
-    <a href="#" class="bitcoin-address-action bitcoin-address-action-send">
-        <i class="fa fa-btc"></i>
-        Pay from wallet
-    </a>
-
-    <a href="#" class="bitcoin-address-action bitcoin-address-action-copy">
-        <i class="fa fa-copy"></i>
-        Copy
-    </a>
-
-    <a href="#" class="bitcoin-address-action bitcoin-address-action-qr">
-        <i class="fa fa-qrcode"></i>
-        QR code
-    </a>
-
-    <div class="bitcoin-action-hint bitcoin-action-hint-send">
-        Sending payment to the address from locally installed Bitcoin wallet app.
-    </div>
-
-    <div class="bitcoin-action-hint bitcoin-action-hint-copy">
-        Press CTRL + C or &#x2318; + C to copy the Bitcoin address.
-    </div>
-
-    <div class="bitcoin-action-hint bitcoin-action-hint-qr">
-        <p>
-            Scan the QR code with your mobile Bitcoin app to
-            make the payment:
-        </p>
-
-        <div class="bitcoin-address-qr-container">
-            <!-- Filled in by JS on action click -->
-        </div>
-    </div>
+  </div>
 </div>
-
-<strong class="bitcoin-address"
-    data-bc-amount="<%= @package.current_price.round(2) %>"
-    data-bc-label="bitcoinaddress.js project"
-    data-bc-message="0.1 BTC donation"
-    data-bc-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
-
-<p>
-    <div>Example price: <span data-price-eur="<%= @package.current_price.round(2) %>"><%= @package.current_price.round(2) %></span></div>
-</p>
