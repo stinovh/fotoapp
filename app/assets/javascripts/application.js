@@ -15,12 +15,9 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-
-$(document).ready(function() {
-  setInterval(function(){
-    $.get("/update_price")
-  }, 1000);
-});
+setInterval(function(){
+  $.get("/update_price")
+}, 1000);
 
 $(document).ready(function() {
     bitcoinaddress.init({
