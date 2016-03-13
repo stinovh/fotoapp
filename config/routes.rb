@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  resources :packages, only: [:index]
-  resources :orders, except: [:index]
-  post "/hook" => "orders#hook"
-  post "/packages" => "packages#index"
+  resources :packages, only: [:index] do
+    resources :orders, except: [:index, :destroy] do
+      resources :bitcoin_payments, only: [:index]
+    end
+  end
 
+  get "/update_price", to: "packages#update_price"
+
+  post "/hook" => "orders#hook"
+  post "/" => "packages#index"
+  root "packages#index"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

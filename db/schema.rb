@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228134112) do
+ActiveRecord::Schema.define(version: 20160313115920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20160228134112) do
     t.datetime "purchased_at"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "payment_method"
   end
 
   add_index "orders", ["package_id"], name: "index_orders_on_package_id", using: :btree
@@ -40,6 +41,9 @@ ActiveRecord::Schema.define(version: 20160228134112) do
     t.boolean  "sold",                default: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.boolean  "reserved",            default: false
+    t.integer  "price_now_cents"
+    t.datetime "reserved_till"
   end
 
   add_foreign_key "orders", "packages"
