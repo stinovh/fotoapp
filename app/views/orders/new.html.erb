@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-4 col-md-offset-4">
-      <%= simple_form_for @order do |f| %>
+      <%= simple_form_for [@package, @order] do |f| %>
         <%= f.hidden_field :package_id, value: @package.id %>
         <%= f.hidden_field :price_cents, value: @price %>
         <%= f.input :full_name %>
         <%= f.input :email %>
-        <%= f.input :payment_method, collection: ['PayPal', 'Bitcoin'], prompt: 'Pick your payment method' %>
+        <%= f.input :payment_method, collection: ['PayPal', 'Bitcoin'], selected: 'PayPal' %>
         <%= f.submit "Continue to payment method", class: "btn btn-primary" %>
       <% end %>
     </div>

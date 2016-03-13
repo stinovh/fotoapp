@@ -15,20 +15,12 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-function executeQuery() {
-  $.ajax({
-    url: '/packages',
-    success: function(data) {
-      $('#current-price').load('/packages #current-price')
-    }
-  });
-  setTimeout(executeQuery, 5000);
-}
 
 $(document).ready(function() {
-  setTimeout(executeQuery, 5000);
+  setInterval(function(){
+    $.get("/update_price")
+  }, 1000);
 });
-
 
 $(document).ready(function() {
     bitcoinaddress.init({

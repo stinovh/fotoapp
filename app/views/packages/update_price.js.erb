@@ -1,0 +1,7 @@
+console.log("still here");
+$('.package-wrapper').html('<%= j render("packages/package") %>');
+<% if @package.reserved %>
+console.log("disable");
+  $('#btn-buy').attr('disabled','disabled');
+<% end %>
+

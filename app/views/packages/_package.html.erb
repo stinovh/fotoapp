@@ -1,0 +1,9 @@
+<h1 id="current-price"><%= @package.current_price %></h1>
+<h1><%= @package.name %></h1>
+<p><%= @package.description %></p>
+<h4>Until <%= @package.end_time %></h4>
+<p>
+  <%= link_to new_package_order_path(@package) do %>
+    <button type="button" class="btn btn-primary" id="btn-buy">Buy</button>
+  <% end %>
+</p>

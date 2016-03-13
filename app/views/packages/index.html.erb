@@ -1,11 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-md-4 col-md-offset-4">
-      <h1 id="current-price"><%= number_to_currency(@package.current_price.round(2), unit: "€") %></h1>
-      <h1><%= @package.name %></h1>
-      <p><%= @package.description %></p>
-      <h4>Until <%= @package.end_time %></h4>
-      <p><%= link_to "Buy", new_order_path(package_id: @package.id), class: "btn btn-primary" %></p>
+    <div class="col-xs-12 col-md-4 col-md-offset-4 package-wrapper">
+    <%= render 'packages/package' %>
     </div>
   </div>
 </div>
