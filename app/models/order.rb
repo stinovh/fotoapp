@@ -5,6 +5,7 @@ class Order < ActiveRecord::Base
 
   serialize :notification_params, Hash
   def paypal_url(return_path)
+    # ADD BUSINESS EMAIL INSTEAD OF CURRENT VALUE FOR BUSINESS
     values = {
         business: "seller-stijn@gmail.com",
         cmd: "_xclick",

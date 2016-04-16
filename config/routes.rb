@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   get "/update_price", to: "packages#update_price"
+  get "/show_reserved_time", to: "orders#show_reserved_time"
 
   post "/hook" => "orders#hook"
   post "/" => "packages#index"

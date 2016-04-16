@@ -1,0 +1,2 @@
+<% time = (package.reserved_till - Time.now).round() %>
+<div class="reserved"><p>Time left to continue to payment <strong><%= convert_seconds_to_time(time) %></strong></p></div>

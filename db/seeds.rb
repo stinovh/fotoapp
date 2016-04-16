@@ -12,6 +12,6 @@ require 'faker'
     description: Faker::Lorem.paragraph,
     start_price_cents: 20000,
     minimum_price_cents: 9000,
-    start_time: Time.now,
+    start_time: Time.now + (i-1),
     end_time: i.days.from_now)
 end

@@ -9,7 +9,13 @@
         <%= f.input :payment_method, collection: ['PayPal', 'Bitcoin'], selected: 'PayPal' %>
         <%= f.submit "Continue to payment method", class: "btn btn-primary" %>
       <% end %>
+      <%= render 'orders/reserved_time', package: @package %>
     </div>
   </div>
 </div>
 
+<script type="text/javascript">
+  setInterval(function(){
+    $.get("/show_reserved_time")
+  }, 1000);
+</script>

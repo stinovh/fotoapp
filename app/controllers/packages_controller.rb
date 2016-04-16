@@ -6,18 +6,22 @@ class PackagesController < ApplicationController
   end
 
   def update_price
-    @package = Package.available.first
-    respond_to do |format|
-      format.js
+    if Package.available.first.present?
+      @package = Package.available.first
+      respond_to do |format|
+        format.js
+      end
     end
   end
 
   private
 
   def check_reserved
-    @package = Package.available.first
-    if !@package.reserved_till.nil? && @package.reserved_till < Time.now && @package.sold == false
-      @package.update(reserved: false, reserved_till: nil)
+    if Package.available.first.present?
+      @package = Package.available.first
+      if !@package.reserved_till.nil? && @package.reserved_till < Time.now && @package.sold == false
+        @package.update(reserved: false, reserved_till: nil)
+      end
     end
   end
 end

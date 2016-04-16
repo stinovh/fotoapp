@@ -1,7 +1,9 @@
-console.log("still here");
-$('.package-wrapper').html('<%= j render("packages/package") %>');
-<% if @package.reserved %>
-console.log("disable");
-  $('#btn-buy').attr('disabled','disabled');
+<% if Package.available.first.present? %>
+  $('.package-wrapper').html('<%= j render("packages/package") %>');
+  <% if @package.reserved %>
+    $('#btn-buy').attr('disabled','disabled');
+  <% end %>
+<% else %>
+  $('#time_till_next').html('<%= time_till_next %>');
 <% end %>
 
