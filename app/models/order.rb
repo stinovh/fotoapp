@@ -12,7 +12,7 @@ class Order < ActiveRecord::Base
         upload: 1,
         return: "#{Rails.application.secrets.app_host}#{return_path}",
         invoice: created_at.to_i,
-        amount: (package.price_now_cents/100),
+        amount: (package.price_now_cents/100.round(2)),
         currency_code: "EUR",
         item_name: package.name,
         item_number: package.id,
