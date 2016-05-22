@@ -40,11 +40,12 @@
 </div>
 
 <strong class="bitcoin-address"
-    data-bc-amount="<%= @package.current_price %>"
-    data-bc-label="bitcoinaddress.js project"
-    data-bc-message="0.1 BTC donation"
-    data-bc-address="19356KxTs9Bw5AAdxens5hoxDSp5bsUKse">19356KxTs9Bw5AAdxens5hoxDSp5bsUKse</strong>
+    data-bc-amount="<%= @package.price_now_cents/100 %>"
+    data-bc-label="<%= @package.name %>"
+    data-bc-message="Thank you for buying <%= @package.name %>!"
+    data-bc-address="2N881LxSSXxpx2ZZhhu7HUD1oQH79X9cXXq">2N881LxSSXxpx2ZZhhu7HUD1oQH79X9cXXq
+</strong>
 
 <p>
-    <div>Example price: <span data-price-eur="<%= @package.current_price.round(2) %>"><%= @package.current_price.round(2) %></span></div>
+    <div>Total amount: <span data-price-eur="<%= @package.price_now_cents/100 %>"><%= @package.price_now_cents/100 %></span></div>
 </p>

@@ -6,6 +6,13 @@ module ApplicationHelper
   end
 
   def time_till_next
-    Time.at((Package.order(:start_time).first.start_time - Time.now).round()).strftime("%H:%M:%S")
+    seconds =(Package.order(:start_time).first.start_time - Time.now).round()
+    return "Coming Soon" if seconds.to_s.include? "-"
+    time_array = seconds_to_dhms(seconds)
+    return "#{time_array[0]}d #{time_array[1]}h #{time_array[2]}m #{time_array[3]}s"
+  end
+
+  def seconds_to_dhms(seconds)
+    [60,60,24].map{ |dm| seconds,t = seconds.divmod(dm); t }.reverse.unshift seconds
   end
 end
