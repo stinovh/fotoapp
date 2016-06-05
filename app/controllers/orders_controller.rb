@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  protect_from_forgery except: [:hook]
+  protect_from_forgery except: [:hook, :confirmation]
   def hook
     params.permit! # Permit all Paypal input params
     status = params[:payment_status]
@@ -53,6 +53,39 @@ class OrdersController < ApplicationController
     render nothing: true
   end
 
+  def confirmation
+    params.permit!
+    order = Order.find(params[:order])
+    address = params[:address]
+    secret = params[:secret]
+    confirmations = params[:confirmations].to_i
+    tx_hash = params[:transaction_hash]
+    value = params[:value].to_f / 100000000
+
+    return 400, 'Incorrect Receiving Address' unless order.address == address
+    return 400, 'Invalid Secret' unless secret == Rails.application.secrets.secret
+    if confirmations >= 4
+      handle.execute %{
+        INSERT INTO invoice_payments
+        (invoice_id, transaction_hash, value)
+        VALUES (?, ?, ?)
+      }, invoice_id, tx_hash, value
+      handle.execute %{
+        DELETE FROM pending_invoice_payments WHERE invoice_id = ?
+      }, invoice_id
+      return 200, '*ok*'
+    else
+      handle.execute %{
+        INSERT INTO pending_invoice_payments
+        (invoice_id, transaction_hash, value)
+        VALUES (?, ?, ?)
+      }, invoice_id, tx_hash, value
+      return 200, 'Waiting for confirmations'
+    end
+    # shouldn't ever reach this
+    return 500, 'something went wrong'
+
+  end
   private
 
     def set_package
