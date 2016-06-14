@@ -8,6 +8,5 @@ class BitcoinPaymentsController < ApplicationController
       @resp = Blockchain::V2::receive(Rails.application.secrets.xpub, callback_url, Rails.application.secrets.blockchain_api)
       @order.update(address: @resp.address)
     end
-    puts "#{Blockchain::V2::callback_log(callback_url, Rails.application.secrets.blockchain_api)}"
   end
 end

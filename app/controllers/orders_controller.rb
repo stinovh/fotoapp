@@ -53,9 +53,13 @@ class OrdersController < ApplicationController
     render nothing: true
   end
 
+  def awaiting_confirmation
+    @order = Order.find(params[:id])
+  end
+
   def confirmation
     params.permit!
-    order = Order.find(params[:order]).includes(:package)
+    order = Order.find(params[:order])
     address = params[:address]
     secret = params[:secret]
     confirmations = params[:confirmations].to_i
@@ -66,7 +70,7 @@ class OrdersController < ApplicationController
     return 400, 'Invalid Secret' unless secret == Rails.application.secrets.secret
     # if value == Blockchain.to_btc('EUR', order.package.price_now_cents/100)
     if confirmations >= 4
-      order.update(status: "Completed", notification_params: tx_hash)
+      order.update(status: "Completed", bitcoin_params: tx_hash)
       order.package.update(sold: true)
       return 200, '*ok*'
     else

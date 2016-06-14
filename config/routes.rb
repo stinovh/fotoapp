@@ -9,8 +9,7 @@ Rails.application.routes.draw do
 
   get "/update_price", to: "packages#update_price"
   get "/show_reserved_time", to: "orders#show_reserved_time"
-
-  post "/confirmation" => "orders#confirmation"
+  get "/confirmation" => "orders#confirmation"
   post "/hook" => "orders#hook"
   post "/" => "packages#index"
   root "packages#index"

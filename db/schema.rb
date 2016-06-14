@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605215254) do
+ActiveRecord::Schema.define(version: 20160614185734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20160605215254) do
     t.datetime "updated_at",          null: false
     t.string   "payment_method"
     t.string   "address"
+    t.string   "bitcoin_params"
   end
 
   add_index "orders", ["package_id"], name: "index_orders_on_package_id", using: :btree
