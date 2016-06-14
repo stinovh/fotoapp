@@ -6,7 +6,7 @@ class Package < ActiveRecord::Base
     if reserved
       "reserved"
     else
-      (self.start_price_cents/100) - (((self.start_price_cents/100 - self.minimum_price_cents/100) / (self.end_time - self.start_time)) * (Time.now - self.start_time)).round(2)
+      (self.start_price_cents/100) - (((self.start_price_cents/100 - self.minimum_price_cents/100) / (self.end_time - self.start_time)) * (Time.now - self.start_time))
     end
   end
 end

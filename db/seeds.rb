@@ -10,8 +10,8 @@ require 'faker'
   Package.create!(
     name: Faker::Commerce.product_name,
     description: Faker::Lorem.paragraph,
-    start_price_cents: 200,
-    minimum_price_cents: 90,
+    start_price_cents: 100,
+    minimum_price_cents: 30,
     start_time: Time.now + (i-1),
     end_time: i.days.from_now)
 end

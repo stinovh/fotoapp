@@ -48,6 +48,11 @@ group :development do
   gem "pry-byebug"
 end
 
+group :production do
+  gem 'rails_12factor'
+  gem 'puma'
+end
+
 # front-end
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
