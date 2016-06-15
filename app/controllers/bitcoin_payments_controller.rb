@@ -9,4 +9,8 @@ class BitcoinPaymentsController < ApplicationController
       @order.update(address: @resp.address)
     end
   end
+
+  def update_order_status
+    @order ||= Order.find(params[:id])
+  end
 end

@@ -1,0 +1,11 @@
+<% if @order.status == "Awaiting Confirmation" %>
+  $('#bitcoin_payment').remove();
+  if ($( "#pending_confirmation" ).length == 0){
+    $('.bitcoin_statuses').append("<%= raw j(render 'bitcoin_payments/testt') %>");
+  };
+<% elsif @order.status == "Completed" %>
+  $('#bitcoin_payment, #pending_confirmation').remove();
+  if ($( "#payment_confirmed" ).length == 0){
+    $('.bitcoin_statuses').append("<%= raw j(render 'bitcoin_payments/payment_confirmed') %>");
+  };
+<% end %>

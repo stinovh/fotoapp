@@ -53,7 +53,7 @@ $(document).ready(function() {
         marketRateVariable: "24h_avg",
 
         // Which currencies are in shown to the user
-        currencies: ["BTC", "USD", "EUR", "CNY"],
+        currencies: ["BTC", "EUR"],
 
         // Special currency symbol artwork
         symbols: {
@@ -62,7 +62,7 @@ $(document).ready(function() {
 
         // Which currency we show user by the default if
         // no currency is selected
-        defaultCurrency: "EUR",
+        defaultCurrency: "BTC",
 
         // How the user is able to interact with the prices
         ux : {

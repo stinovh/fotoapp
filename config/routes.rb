@@ -7,10 +7,15 @@ Rails.application.routes.draw do
     end
   end
 
+  # Ajax routes
   get "/update_price", to: "packages#update_price"
   get "/show_reserved_time", to: "orders#show_reserved_time"
+  get "/update_order_status/:id", to: "bitcoin_payments#update_order_status"
+
+  # Callback routes
   get "/confirmation" => "orders#confirmation"
   post "/hook" => "orders#hook"
+
   post "/" => "packages#index"
   root "packages#index"
   # You can have the root of your site routed with "root"

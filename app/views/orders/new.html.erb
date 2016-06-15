@@ -1,21 +1,26 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-md-4 col-md-offset-4">
-      <%= simple_form_for [@package, @order] do |f| %>
-        <%= f.hidden_field :package_id, value: @package.id %>
-        <%= f.hidden_field :price_cents, value: @price %>
-        <%= f.input :full_name %>
-        <%= f.input :email %>
-        <%= f.input :payment_method, collection: ['PayPal', 'Bitcoin'], selected: 'PayPal' %>
-        <%= f.submit "Continue to payment method", class: "btn btn-primary" %>
-      <% end %>
-      <%= render 'orders/reserved_time', package: @package %>
+<% if @package.order.present? %>
+  <p>This product is already ordered or the order is currently being processed!</p>
+  <%= link_to "Go back to home", root_path %>
+<% else %>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-4 col-md-offset-4">
+        <%= simple_form_for [@package, @order] do |f| %>
+          <%= f.hidden_field :package_id, value: @package.id %>
+          <%= f.hidden_field :price_cents, value: @price %>
+          <%= f.input :full_name %>
+          <%= f.input :email %>
+          <%= f.input :payment_method, collection: ['PayPal', 'Bitcoin'], selected: 'PayPal' %>
+          <%= f.submit "Continue to payment method", class: "btn btn-primary" %>
+        <% end %>
+        <%= render 'orders/reserved_time', package: @package %>
+      </div>
     </div>
   </div>
-</div>
 
 <script type="text/javascript">
   setInterval(function(){
     $.get("/show_reserved_time")
   }, 1000);
 </script>
+<% end %>
