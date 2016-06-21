@@ -75,6 +75,7 @@ class OrdersController < ApplicationController
       return 200, '*ok*'
     else
       order.update(status: "Awaiting Confirmation", bitcoin_params: tx_hash)
+      order.update(confirmations: confirmations)
       return 200, 'Waiting for confirmations'
     end
     # shouldn't ever reach this
